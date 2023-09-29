@@ -6,7 +6,7 @@ This Django REST Framework API allows an authenticated user to upload an image.
 2. Run docker-compose build
 3. Run docker-compose run --rm app sh -c "python manage.py makemigrations && python manage.py migrate"
 4. Run docker-compose run --rm app sh -c "python manage.py createsuperuser"
-5. Type email and password.
+5. Type email and password
 6. Run docker-compose up
 7. Visit 'localhost:8000/admin'
 
