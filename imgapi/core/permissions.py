@@ -1,6 +1,7 @@
 from rest_framework.permissions import BasePermission
 from .models import User
 
+
 class ExpiringLinkAllowed(BasePermission):
     """Permission for admin, enterprise or custom users"""
     def has_permission(self, request, view):

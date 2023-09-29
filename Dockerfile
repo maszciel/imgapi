@@ -2,6 +2,7 @@ FROM python:3.9-alpine3.18
 
 ENV PYTHONUNBUFFERED 1
 
+# change user for production
 RUN addgroup app && \
     adduser -S -G app app
 

@@ -31,12 +31,13 @@ class PublicUserImageAPITest(TestCase):
 
     def setUp(self):
         self.client = APIClient()
-    
+
     def test_auth_required(self):
         """Test if listing images requires authentication"""
         res = self.client.get(IMG_URL)
 
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
 
 class PrivateUserImageAPITest(TestCase):
     """Tests for authenticated requests to the API"""
@@ -56,7 +57,7 @@ class PrivateUserImageAPITest(TestCase):
             image_file.seek(0)
             payload = {'image': image_file}
             res = self.client.post(IMG_CREATE_URL, payload, format='multipart')
-        
+
         self.assertEqual(res.status_code, status.HTTP_201_CREATED)
         self.assertIn('image', res.data)
 
@@ -76,7 +77,9 @@ class PrivateUserImageAPITest(TestCase):
 
     def test_exp_link_list_and_create(self):
         """Test listing and creating expiring links"""
-        user2 = create_user(email='email@example.com', password='Testpass12345', user_tier=User.ENTERPRISE)
+        user2 = create_user(email='email@example.com',
+                            password='Testpass12345',
+                            user_tier=User.ENTERPRISE)
         self.client.force_authenticate(user=user2)
         img = UserImage.objects.create(image="media/media/test/test.png",
                                        user=user2)
@@ -95,11 +98,12 @@ class PrivateUserImageAPITest(TestCase):
         self.assertEqual(res2.status_code, status.HTTP_200_OK)
         self.assertEqual(len(res2.data), 1)
         self.assertEqual(serializer2.data, serializer1.data)
-        
-        self.client.force_authenticate(self.user)        
+
+        self.client.force_authenticate(self.user)
 
     def test_basic_users_not_allowed_expiring_link(self):
-        """Test if basic users are not allowed to list or create expiring link"""
+        """Test if basic users are not
+           allowed to list or create expiring link"""
         img = UserImage.objects.create(image="media/media/test/test.png",
                                        user=self.user)
         payload = {

@@ -77,5 +77,5 @@ class ModelTests(TestCase):
                                          user=user)
         exp_link = ExpiringLink.objects.create(image=image,
                                                expires_after=300)
-        
+
         self.assertEqual(exp_link.image.id, image.id)
