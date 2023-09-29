@@ -13,7 +13,7 @@ This Django REST Framework API allows an authenticated user to upload an image.
 1. Create a user via admin panel
 2. Visit localhost:8000/api/docs
 3. Scroll down and expand on /token/
-4. Click Try it out and log in
+4. Click 'Try it out' and log in
 5. Copy the token from the output
 6. Scroll up and click Authorize
 7. In 'tokenAuth (apiKey)' section type 'Token ' and paste the token
